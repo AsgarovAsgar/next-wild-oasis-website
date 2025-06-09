@@ -3,14 +3,17 @@ import Navigation from '@/app/_components/Navigation'
 import '@/app/_styles/globals.css'
 
 export const metadata = {
-  title: 'Wild Oasis',
-  description: 'Wild Oasis'
+  title: {
+    template: '%s | Wild Oasis',
+    default: 'Welcome to the Wild Oasis'
+  },
+  description: 'Luxury cabins in the mountains and dark forests'
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="bg-primary-950 text-primary-100 min-h-screen">
+      <body className="min-h-screen bg-primary-950 text-primary-100">
         <header>
           <Logo />
           <Navigation />
