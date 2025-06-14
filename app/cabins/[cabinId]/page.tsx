@@ -7,6 +7,14 @@ type PageProps = {
   params: { cabinId: string }
 }
 
+export async function generateMetadata({ params }: PageProps) {
+  const { name } = await getCabin(params.cabinId)
+
+  return {
+    title: `Cabin ${name}`
+  }
+}
+
 export default async function Page({ params }: PageProps) {
   const cabin = await getCabin(params.cabinId)
   const { id, name, maxCapacity, regularPrice, discount, image, description } = cabin
