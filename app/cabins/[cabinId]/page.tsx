@@ -10,10 +10,7 @@ type PageProps = {
 
 export async function generateMetadata({ params }: PageProps) {
   const { name } = await getCabin(params.cabinId)
-
-  return {
-    title: `Cabin ${name}`
-  }
+  return { title: `Cabin ${name}` }
 }
 
 export async function generateStaticParams() {
@@ -70,7 +67,7 @@ export default async function Page({ params }: PageProps) {
       </div>
 
       <div>
-        <h2 className="text-center text-5xl font-semibold">Reserve today. Pay on arrival.</h2>
+        <h2 className="text-center text-5xl font-semibold">Reserve cabin {name} today. Pay on arrival.</h2>
       </div>
     </div>
   )
