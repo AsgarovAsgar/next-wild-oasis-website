@@ -1,5 +1,10 @@
+'use client'
+
+import { useReservation } from '@/app/_components/ReservationContext'
+
 export default function ReservationForm({ cabin }) {
   const { maxCapacity } = cabin
+  const { range } = useReservation()
 
   return (
     <div className="scale-[1.01]">
@@ -17,6 +22,14 @@ export default function ReservationForm({ cabin }) {
           <p>{user.name}</p>
         </div> */}
       </div>
+
+      {range?.from && range?.to ? (
+        <div className="flex items-center justify-between bg-primary-800 px-16 py-2 text-primary-300">
+          <p>
+            Dates: {String(range.from)} - {String(range.to)}
+          </p>
+        </div>
+      ) : null}
 
       <form className="flex flex-col gap-5 bg-primary-900 px-16 py-10 text-lg">
         <div className="space-y-2">

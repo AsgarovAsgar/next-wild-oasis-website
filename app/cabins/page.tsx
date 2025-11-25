@@ -3,6 +3,7 @@ import { Suspense } from 'react'
 import CabinList from '@/app/_components/CabinList'
 import Filter from '@/app/_components/Filter'
 import Spinner from '@/app/_components/Spinner'
+import ReservationReminder from '@/app/_components/ReservationReminder'
 
 // not available because searchParams makes the page dynamic
 // export const revalidate = 3600
@@ -31,6 +32,7 @@ export default function Page({ searchParams }) {
 
       <Suspense fallback={<Spinner />} key={filter}>
         <CabinList filter={filter} />
+        <ReservationReminder />
       </Suspense>
     </div>
   )

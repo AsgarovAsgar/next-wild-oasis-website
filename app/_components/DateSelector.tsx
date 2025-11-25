@@ -2,19 +2,21 @@
 
 import { isWithinInterval } from 'date-fns'
 import { DayPicker } from 'react-day-picker'
-import 'react-day-picker/dist/style.css'
+import 'react-day-picker/style.css'
+import { useReservation } from '@/app/_components/ReservationContext'
 
 function isAlreadyBooked(range, datesArr) {
   return range.from && range.to && datesArr.some((date) => isWithinInterval(date, { start: range.from, end: range.to }))
 }
 
-function DateSelector({ settings, bookedDates, cabin }) {
+function DateSelector({ settings }) {
+  const { range, setRange, resetRange } = useReservation()
+
   // CHANGE
   const regularPrice = 23
   const discount = 23
   const numNights = 23
   const cabinPrice = 23
-  const range = { from: null, to: null }
 
   // SETTINGS
   const { minBookingLength, maxBookingLength } = settings
@@ -26,11 +28,12 @@ function DateSelector({ settings, bookedDates, cabin }) {
         mode="range"
         min={minBookingLength + 1}
         max={maxBookingLength}
-        fromMonth={new Date()}
-        fromDate={new Date()}
-        toYear={new Date().getFullYear() + 5}
+        startMonth={new Date()}
+        endMonth={new Date(2030, 0, 1)}
         captionLayout="dropdown"
         numberOfMonths={2}
+        onSelect={setRange}
+        selected={range}
       />
 
       <div className="flex h-[72px] items-center justify-between bg-accent-500 px-8 text-primary-800">
@@ -59,8 +62,8 @@ function DateSelector({ settings, bookedDates, cabin }) {
           ) : null}
         </div>
 
-        {range.from || range.to ? (
-          <button className="border border-primary-800 px-4 py-2 text-sm font-semibold" onClick={() => resetRange()}>
+        {range?.from || range?.to ? (
+          <button className="border border-primary-800 px-4 py-2 text-sm font-semibold" onClick={resetRange}>
             Clear
           </button>
         ) : null}
