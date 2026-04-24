@@ -12,10 +12,15 @@ export const options = {
     authorized({ auth }) {
       if (!!auth?.user) return true
     }
+  },
+  pages: {
+    signIn: '/login'
   }
 }
 
 export const {
-  handlers: { GET, POST },
-  auth
+  auth,
+  signIn,
+  signOut,
+  handlers: { GET, POST }
 } = NextAuth(options)
