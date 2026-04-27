@@ -47,7 +47,7 @@ export default function UpdateProfileForm({ children, guest }: { children: React
       </div>
 
       <div className="flex items-center justify-end gap-6">
-        <SubmitButton text="profile" />
+        <SubmitButton pendingLabel="Updating">Update Profile</SubmitButton>
       </div>
     </form>
   )
